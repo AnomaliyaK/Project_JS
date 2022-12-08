@@ -1,0 +1,59 @@
+.creater_panel {
+  .container {
+    width: 70%;
+    padding: 20px 50px;
+    border: 1px solid rgb(203, 202, 202);
+    border-radius: 20px;
+    .creater_panel-name {
+      color: coral;
+      margin-bottom: 20px;
+    }
+    .creater_panel-close_btn {
+      background-color: #fff;
+      border: 0;
+      color: coral;
+    }
+    .creater_panel-title {
+      margin-bottom: 20px;
+    }
+    .creater_panel-description {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 5px 20px;
+      width: 100%;
+      height: 40px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      border: 1px solid rgb(203, 202, 202);
+    }
+
+    .creater_panel-description_input {
+      height: 120px;
+    }
+    .creater_panel-btn {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .creater_panel-create_btn {
+      height: 30px;
+      width: 120px;
+      border-radius: 20px;
+      color: white;
+      background-color: coral;
+      border: 0;
+    }
+    .creater_panel-cancel_btn {
+      height: 30px;
+      width: 120px;
+      border-radius: 20px;
+      color: white;
+      background-color: cornflowerblue;
+      border: 0;
+      margin-left: 40px;
+    }
+  }
+}
+.creater_panel.active {
+  display: none;
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./sass/index.scss" />
+    <title>Project_JS</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="wrap">
+          <div class="header-logo"><span>ToDo</span></div>
+          <div class="header-title">what can i do today</div>
+          <div class="current_data">09.01.2022</div>
+        </div>
+      </div>
+    </header>
+    <section class="navigation">
+      <div class="container">
+        <div class="wrap">
+          <div class="navigation-title">
+            <div class="wrap">
+              <h3>Make ToDo</h3>
+              <div class="navigation-buttons">
+                <button class="navigation-create_btn">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <button class="navigation-remove_btn">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="navigation-title">
+            <div class="wrap">
+              <h3>In progress</h3>
+              <div class="navigation-buttons">
+                <button class="navigation-buttons-remove_btn">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="navigation-title">
+            <div class="wrap">
+              <h3>Done</h3>
+              <div class="navigation-buttons">
+                <button class="navigation-buttons-remove_btn">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="tasks">
+      <div class="container">
+        <div class="wrap">
+          <div class="tasks-card">
+            <!-- <div class="tasks-card-title">
+              <div class="wrap">
+                <h3>make ToDo</h3>
+                <div class="tasks-card-title-buttons">
+                  <button class="tasks-card-title-buttons-create_btn">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button class="tasks-card-title-buttons-remove_btn">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div> -->
+            <div class="tasks-card-counter">
+              <div class="wrap">
+                <span>total</span>
+                <div class="tasks-card-counter-out">0</div>
+              </div>
+            </div>
+            <div class="tasks-card-list">
+              <!-- <div class="tasks-card-list-item">
+                <div class="tasks-card-list-wrap">
+                  <div class="tasks-card-list-logo">ToDo</div>
+                  <div class="current_data">09.02.2022</div>
+                </div>
+                <h2 class="tasks-card-list-title">мой таск</h2>
+                <div class="tasks-card-list-description">
+                  Сделай что прикажут
+                </div>
+                <div class="wrap">
+                  <div class="tasks-card-list-author">автор</div>
+                  <div class="tasks-card-list-buttons">
+                    <button class="tasks-card-list-buttons-inprogress_btn">
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button class="tasks-card-list-buttons-remove_btn">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="tasks-card">
+            <div class="tasks-card-counter">
+              <div class="wrap">
+                <span>total</span>
+                <div class="tasks-card-counter-out">0</div>
+              </div>
+            </div>
+            <div class="tasks-card-list">
+              <div class="tasks-card-list-item">
+                <div class="tasks-card-list-wrap">
+                  <div class="tasks-card-list-logo">ToDo</div>
+                  <div class="current_data">09.02.2022</div>
+                </div>
+                <h2 class="tasks-card-list-title">мой таск</h2>
+                <div class="tasks-card-list-description">
+                  Сделай что прикажут
+                </div>
+                <div class="wrap">
+                  <div class="tasks-card-list-author">автор</div>
+                  <div class="tasks-card-list-buttons">
+                    <button class="tasks-card-list-buttons-inmake_btn">
+                      <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="tasks-card-list-buttons-indone_btn">
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button class="tasks-card-list-buttons-remove_btn">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tasks-card">
+            <div class="tasks-card-counter">
+              <div class="wrap">
+                <span>total</span>
+                <div class="tasks-card-counter-out">0</div>
+              </div>
+            </div>
+            <div class="tasks-card-list">
+              <div class="tasks-card-list-item">
+                <div class="tasks-card-list-wrap">
+                  <div class="tasks-card-list-logo">ToDo</div>
+                  <div class="current_data">09.02.2022</div>
+                </div>
+                <h2 class="tasks-card-list-title">мой таск</h2>
+                <div class="tasks-card-list-description">
+                  Сделай что прикажут
+                </div>
+                <div class="wrap">
+                  <div class="tasks-card-list-author">автор</div>
+                  <div class="tasks-card-list-buttons">
+                    <button class="tasks-card-list-buttons-inprogress_btn">
+                      <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="tasks-card-list-buttons-remove_btn">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="creater_panel active">
+      <div class="container">
+        <form>
+          <div class="wrap">
+            <h2 class="creater_panel-name">Fill in all required fields</h2>
+            <button class="creater_panel-close_btn">
+              <i class="fa-regular fa-circle-xmark"></i>
+            </button>
+          </div>
+          <div class="creater_panel-title">Title:</div>
+          <input
+            class="creater_panel-title_input"
+            type="text"
+            placeholder="Enter title for you note"
+            minlength="1"
+          />
+
+          <div class="creater_panel-description">Description:</div>
+          <input
+            class="creater_panel-description_input"
+            type="text"
+            placeholder="Enter title for you note"
+            minlength="1"
+          />
+
+          <div class="creater_panel-author">Author:</div>
+          <input
+            class="creater_panel-author_input"
+            type="text"
+            placeholder="Author"
+            minlength="1"
+          />
+
+          <div class="creater_panel-btn">
+            <button class="creater_panel-create_btn">Create</button>
+            <button class="creater_panel-cancel_btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <script type="module" src="./js/index.js"></script>
+  </body>
+</html>
