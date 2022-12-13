@@ -18,6 +18,7 @@
         border: 0;
         background-color: #fff;
         color: coral;
+        cursor: pointer;
       }
 
       .navigation-remove_btn {
@@ -25,7 +26,16 @@
         border: 0;
         background-color: #fff;
         color: gray;
+        cursor: pointer;
       }
+    }
+    .navigation-inprogress-remove_btn,
+    .navigation-done-remove_btn {
+      border: 0;
+      background-color: #fff;
+      color: gray;
+      margin-right: 20px;
+      cursor: pointer;
     }
   }
 }

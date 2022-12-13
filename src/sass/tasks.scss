@@ -1,39 +1,15 @@
 .tasks {
   padding: 1.25em 0 3.25em 0;
 
-  .tasks-card {
+  .wrap {
+    align-items: flex-start;
+  }
+
+  .tasks-card,
+  .inprogress-card,
+  .done-card {
     width: 30%;
 
-    .wrap {
-      align-items: flex-start;
-    }
-    // &-title {
-    //   text-transform: capitalize;
-    //   border: 1px solid gray;
-    //   border-radius: 10px;
-    //   padding: 1.25em 0.9375em;
-    //   margin-bottom: 20px;
-
-    //   h3 {
-    //     margin-left: 20px;
-    //   }
-    //   &-buttons {
-    //     margin-right: 20px;
-
-    //     &-create_btn {
-    //       border: 0;
-    //       background-color: #fff;
-    //       color: coral;
-    //     }
-
-    //     &-remove_btn {
-    //       margin-left: 20px;
-    //       border: 0;
-    //       background-color: #fff;
-    //       color: gray;
-    //     }
-    //   }
-    // }
     &-counter {
       border: 1px solid gray;
       border-radius: 10px;
@@ -59,6 +35,10 @@
         border-radius: 10px;
         padding: 1.25em 0.9375em;
         background-color: #fff5ee;
+        margin-bottom: 20px;
+      }
+      &-item:last-child {
+        margin-bottom: 0;
       }
 
       &-wrap {
@@ -106,12 +86,14 @@
           background-color: #fff5ee;
           color: coral;
           margin-left: 20px;
+          cursor: pointer;
         }
         &-remove_btn {
           margin-left: 20px;
           border: 0;
           background-color: #fff5ee;
           color: gray;
+          cursor: pointer;
         }
       }
     }

@@ -36,21 +36,17 @@
           <div class="navigation-title">
             <div class="wrap">
               <h3>In progress</h3>
-              <div class="navigation-buttons">
-                <button class="navigation-buttons-remove_btn">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </div>
+              <button class="navigation-inprogress-remove_btn">
+                <i class="fa-solid fa-trash"></i>
+              </button>
             </div>
           </div>
           <div class="navigation-title">
             <div class="wrap">
               <h3>Done</h3>
-              <div class="navigation-buttons">
-                <button class="navigation-buttons-remove_btn">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </div>
+              <button class="navigation-done-remove_btn">
+                <i class="fa-solid fa-trash"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -60,19 +56,6 @@
       <div class="container">
         <div class="wrap">
           <div class="tasks-card">
-            <!-- <div class="tasks-card-title">
-              <div class="wrap">
-                <h3>make ToDo</h3>
-                <div class="tasks-card-title-buttons">
-                  <button class="tasks-card-title-buttons-create_btn">
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                  <button class="tasks-card-title-buttons-remove_btn">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-            </div> -->
             <div class="tasks-card-counter">
               <div class="wrap">
                 <span>total</span>
@@ -103,69 +86,69 @@
               </div> -->
             </div>
           </div>
-          <div class="tasks-card">
-            <div class="tasks-card-counter">
+          <div class="inprogress-card">
+            <div class="inprogress-card-counter">
               <div class="wrap">
                 <span>total</span>
-                <div class="tasks-card-counter-out">0</div>
+                <div class="inprogress-card-counter-out">0</div>
               </div>
             </div>
-            <div class="tasks-card-list">
-              <div class="tasks-card-list-item">
-                <div class="tasks-card-list-wrap">
-                  <div class="tasks-card-list-logo">ToDo</div>
+            <div class="inprogress-card-list">
+              <!-- <div class="inprogress-card-list-item">
+                <div class="inprogress-card-list-wrap">
+                  <div class="inprogress-card-list-logo">ToDo</div>
                   <div class="current_data">09.02.2022</div>
                 </div>
-                <h2 class="tasks-card-list-title">мой таск</h2>
-                <div class="tasks-card-list-description">
+                <h2 class="inprogress-card-list-title">мой таск</h2>
+                <div class="inprogress-card-list-description">
                   Сделай что прикажут
                 </div>
                 <div class="wrap">
-                  <div class="tasks-card-list-author">автор</div>
-                  <div class="tasks-card-list-buttons">
-                    <button class="tasks-card-list-buttons-inmake_btn">
+                  <div class="inprogress-card-list-author">автор</div>
+                  <div class="inprogress-card-list-buttons">
+                    <button class="inprogress-card-list-buttons-inmake_btn">
                       <i class="fa-solid fa-arrow-left"></i>
                     </button>
-                    <button class="tasks-card-list-buttons-indone_btn">
+                    <button class="inprogress-card-list-buttons-indone_btn">
                       <i class="fa-solid fa-arrow-right"></i>
                     </button>
-                    <button class="tasks-card-list-buttons-remove_btn">
+                    <button class="inprogress-card-list-buttons-remove_btn">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
-          <div class="tasks-card">
-            <div class="tasks-card-counter">
+          <div class="done-card">
+            <div class="done-card-counter">
               <div class="wrap">
                 <span>total</span>
-                <div class="tasks-card-counter-out">0</div>
+                <div class="done-card-counter-out">0</div>
               </div>
             </div>
-            <div class="tasks-card-list">
-              <div class="tasks-card-list-item">
-                <div class="tasks-card-list-wrap">
-                  <div class="tasks-card-list-logo">ToDo</div>
+            <div class="done-card-list">
+              <!-- <div class="done-card-list-item">
+                <div class="done-card-list-wrap">
+                  <div class="done-card-list-logo">ToDo</div>
                   <div class="current_data">09.02.2022</div>
                 </div>
-                <h2 class="tasks-card-list-title">мой таск</h2>
-                <div class="tasks-card-list-description">
+                <h2 class="done-card-list-title">мой таск</h2>
+                <div class="done-card-list-description">
                   Сделай что прикажут
                 </div>
                 <div class="wrap">
-                  <div class="tasks-card-list-author">автор</div>
-                  <div class="tasks-card-list-buttons">
-                    <button class="tasks-card-list-buttons-inprogress_btn">
+                  <div class="done-card-list-author">автор</div>
+                  <div class="done-card-list-buttons">
+                    <button class="done-card-list-buttons-inprogress_btn">
                       <i class="fa-solid fa-arrow-left"></i>
                     </button>
-                    <button class="tasks-card-list-buttons-remove_btn">
+                    <button class="done-card-list-buttons-remove_btn">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -194,6 +177,7 @@
             type="text"
             placeholder="Enter title for you note"
             minlength="1"
+            disabled
           />
 
           <div class="creater_panel-author">Author:</div>
@@ -202,6 +186,7 @@
             type="text"
             placeholder="Author"
             minlength="1"
+            disabled
           />
 
           <div class="creater_panel-btn">

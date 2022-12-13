@@ -12,6 +12,7 @@
       background-color: #fff;
       border: 0;
       color: coral;
+      cursor: pointer;
     }
     .creater_panel-title {
       margin-bottom: 20px;
@@ -34,6 +35,7 @@
     .creater_panel-btn {
       display: flex;
       justify-content: flex-end;
+      cursor: pointer;
     }
     .creater_panel-create_btn {
       height: 30px;
@@ -42,6 +44,7 @@
       color: white;
       background-color: coral;
       border: 0;
+      cursor: pointer;
     }
     .creater_panel-cancel_btn {
       height: 30px;
@@ -51,6 +54,7 @@
       background-color: cornflowerblue;
       border: 0;
       margin-left: 40px;
+      cursor: pointer;
     }
   }
 }
