@@ -34,7 +34,7 @@ const $CREATER_PANEL_AUTHOR = document.querySelector(
   '.creater_panel-author_input'
 );
 
-let $TASKS_CARD_LIST = document.querySelector('.tasks-card-list');
+const $TASKS_CARD_LIST = document.querySelector('.tasks-card-list');
 const $TASKS_CARD_COUNTER_OUT = document.querySelector(
   '.tasks-card-counter-out'
 );
@@ -53,8 +53,6 @@ let $INPROGRESS_CARD_LIST_REMOVE_BTN_ALL;
 let $DONE_CARD_LIST_INPROGRESS_BTN_ALL;
 let $DONE_CARD_LIST_REMOVE_BTN_ALL;
 
-let html = document.querySelector('html');
-
 // 1-текущая дата
 const data = new Date();
 const day = data.getDate();
@@ -68,11 +66,11 @@ if (day < 10 && month < 10) {
 } else if (day > 9 && month < 10) {
   $CURRENT_DATA.textContent = `${day}.0${month}.${year} `;
 } else $CURRENT_DATA.textContent = `${day}.${month}.${year} `;
+console.log($CURRENT_DATA.textContent);
 
 // 2-Вызов панели создания таска
 const showCreaterPanel = () => {
   $CREATER_PANEL.classList.remove('active');
-  html.style.overflow = 'hidden';
 };
 $NAVIGATION_CREATE_BTN.addEventListener('click', showCreaterPanel);
 
@@ -90,11 +88,11 @@ function isValid() {
   for (let i = 0; i < input.length - 1; i++) {
     input[i].addEventListener('input', () => {
       input[i + 1].disabled = false;
-      $CREATER_PANEL_CREATE_BTN.disabled = false;
     });
   }
 }
 isValid();
+
 function isDisabled() {
   for (let i = 0; i < input.length - 1; i++) {
     input[i + 1].disabled = true;
@@ -103,7 +101,6 @@ function isDisabled() {
 
 // 5 - функция-конструктор. Создание записи
 function GetData(title, description, author) {
-  this.id = Math.random().toString(36).substring(7);
   this.title = title;
   this.description = description;
   this.author = author;
@@ -116,9 +113,9 @@ const clearValue = (elem) => {
 };
 
 // 7 - функции вывода записи на экран
-const createMakeToDo = (data) => {
+const createMakeToDo = (data, index) => {
   return `
-    <div class="tasks-card-list-item" id="${data.id}">
+    <div class="tasks-card-list-item" id="${index}">
       <div class="tasks-card-list-wrap">
         <div class="tasks-card-list-logo">ToDo</div>
         <div class="current_data">${$CURRENT_DATA.textContent}</div>
@@ -130,10 +127,10 @@ const createMakeToDo = (data) => {
       <div class="wrap">
         <div class="tasks-card-list-author">${data.author}</div>
         <div class="tasks-card-list-buttons">
-          <button class="tasks-card-list-buttons-inprogress_btn" id="${data.id}">
+          <button class="tasks-card-list-buttons-inprogress_btn">
             <i class="fa-solid fa-arrow-right"></i>
           </button>
-          <button class="tasks-card-list-buttons-remove_btn" id="${data.id}">
+          <button class="tasks-card-list-buttons-remove_btn">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
@@ -142,7 +139,7 @@ const createMakeToDo = (data) => {
 };
 const createInProgress = (data) => {
   return `
-  <div class="inprogress-card-list-item" id="${data.id}">
+  <div class="inprogress-card-list-item">
                 <div class="inprogress-card-list-wrap">
                   <div class="inprogress-card-list-logo">ToDo</div>
                   <div class="current_data">${$CURRENT_DATA.textContent}</div>
@@ -154,13 +151,13 @@ const createInProgress = (data) => {
                 <div class="wrap">
                   <div class="inprogress-card-list-author">${data.author}</div>
                   <div class="inprogress-card-list-buttons">
-                    <button class="inprogress-card-list-buttons-inmake_btn" id="${data.id}">
+                    <button class="inprogress-card-list-buttons-inmake_btn">
                       <i class="fa-solid fa-arrow-left"></i>
                     </button>
-                    <button class="inprogress-card-list-buttons-indone_btn" id="${data.id}">
+                    <button class="inprogress-card-list-buttons-indone_btn">
                       <i class="fa-solid fa-arrow-right"></i>
                     </button>
-                    <button class="inprogress-card-list-buttons-remove_btn" id="${data.id}">
+                    <button class="inprogress-card-list-buttons-remove_btn">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
@@ -169,7 +166,7 @@ const createInProgress = (data) => {
 };
 const createDone = (data) => {
   return `
-  <div class="done-card-list-item" id="${data.id}">
+  <div class="done-card-list-item">
                 <div class="done-card-list-wrap">
                   <div class="done-card-list-logo">ToDo</div>
                   <div class="current_data">${$CURRENT_DATA.textContent}</div>
@@ -181,10 +178,10 @@ const createDone = (data) => {
                 <div class="wrap">
                   <div class="done-card-list-author">${data.author}</div>
                   <div class="done-card-list-buttons">
-                    <button class="done-card-list-buttons-inprogress_btn" id="${data.id}">
+                    <button class="done-card-list-buttons-inprogress_btn">
                       <i class="fa-solid fa-arrow-left"></i>
                     </button>
-                    <button class="done-card-list-buttons-remove_btn" id="${data.id}">
+                    <button class="done-card-list-buttons-remove_btn">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
@@ -192,7 +189,32 @@ const createDone = (data) => {
               </div>`;
 };
 
-// 8-функции записи в localStorage
+// 8-ОЧИСТКА СТОЛБЦОВ ПО КНОПКЕ В NAVIGATION
+// По кнопке очистка всего столбца MakeToDo
+$NAVIGATION_REMOVE_BTN.addEventListener('click', () => {
+  makeToDo.splice(0, makeToDo.length);
+  console.log(makeToDo);
+  $TASKS_CARD_LIST.innerHTML = [];
+  $TASKS_CARD_COUNTER_OUT.innerHTML = 0;
+  saveMakeToDo(makeToDo);
+});
+// По кнопке очистка всего столбца InProgress
+$NAVIGATION_INPROGRESS_REMOVE_BTN.addEventListener('click', () => {
+  inProgress.splice(0, inProgress.length);
+  console.log(inProgress);
+  $INPROGRESS_CARD_LIST.innerHTML = [];
+  $INPROGRESS_CARD_COUNTER_OUT.innerHTML = 0;
+  saveInProgress(inProgress);
+});
+// По кнопке очистка всего столбца Done
+$NAVIGATION_DONE_REMOVE_BTN.addEventListener('click', () => {
+  done.splice(0, done.length);
+  $DONE_CARD_LIST.innerHTML = [];
+  $DONE_CARD_COUNTER_OUT.innerHTML = 0;
+  saveDone(done);
+});
+
+// 9-функции записи в localStorage
 const saveMakeToDo = (arr) => {
   localStorage.setItem('makeToDo', JSON.stringify(arr));
 };
@@ -203,31 +225,34 @@ const saveDone = (arr) => {
   localStorage.setItem('done', JSON.stringify(arr));
 };
 
-// 9-получение записи из localStorage
+// 10-получение записи из localStorage
 let makeToDo = JSON.parse(localStorage.getItem('makeToDo')) || [];
 let inProgress = JSON.parse(localStorage.getItem('inProgress')) || [];
 let done = JSON.parse(localStorage.getItem('done')) || [];
 
-// 10-удаление html записи из списка
+// 11-удаление html записи из списка
 function removeTask(e) {
   e.target.closest('.tasks-card-list-item').remove();
 }
 
-function removeInProgress(e) {
-  e.target.closest('.inprogress-card-list-item').remove();
-}
-
-function removeDone(e) {
-  e.target.closest('.done-card-list-item').remove();
-}
-
-//11-Вывод на страницу
+//12-Вывод на страницу
 // function localArr() {
 if (makeToDo !== []) {
   makeToDo.forEach(function (item, index) {
-    $TASKS_CARD_LIST.innerHTML += createMakeToDo(item);
+    $TASKS_CARD_LIST.innerHTML += createMakeToDo(item, index);
     $TASKS_CARD_COUNTER_OUT.innerHTML = index + 1;
   });
+  // $TASKS_CARD_LIST_REMOVE_BTN_ALL = document.querySelectorAll(
+  //   '.tasks-card-list-buttons-remove_btn'
+  // );
+  // for (let i = 0; i <= $TASKS_CARD_LIST_REMOVE_BTN_ALL.length; i++) {
+  //   $TASKS_CARD_LIST_REMOVE_BTN_ALL[i].addEventListener('click', function () {
+  //     makeToDo.splice(i, 1);
+  //     saveMakeToDo(makeToDo);
+  //     $TASKS_CARD_COUNTER_OUT.innerHTML = makeToDo.length;
+  //   });
+  //   $TASKS_CARD_LIST_REMOVE_BTN_ALL[i].addEventListener('click', removeTask);
+  // }
 }
 if (inProgress !== []) {
   inProgress.forEach(function (item, index) {
@@ -241,195 +266,155 @@ if (done !== []) {
     $DONE_CARD_COUNTER_OUT.innerHTML = index + 1;
   });
 }
+// 13- Удаление задач из списка по кнопке мусорки в карточке
+// Удаление task из MakeToDo по кнопке мусорки в карточке
+// $TASKS_CARD_LIST_REMOVE_BTN_ALL = document.querySelectorAll(
+//   '.tasks-card-list-buttons-remove_btn'
+// );
 
-//12-Функция поиска элемента по id
-function findElementById(array, id) {
-  array.forEach((item, index) => {
-    if (item.id === id) {
-      arr_index = index;
-    }
-  });
-  return arr_index;
-}
+// $TASKS_CARD_LIST_REMOVE_BTN_ALL.forEach((item, index) => {
+//   item.addEventListener('click', function () {
+//     makeToDo.splice(index, 1);
+//     saveMakeToDo(makeToDo);
+//     $TASKS_CARD_COUNTER_OUT.innerHTML = makeToDo.length;
+//   });
+// });
+// $TASKS_CARD_LIST_REMOVE_BTN_ALL.forEach((item) => {
+//   item.addEventListener('click', removeTask);
+// });
 
-//////////////////////////////////////////////////////////     КНОПКИ      ///////////////////////////////////////////////////////////////
-
-// +13-ОЧИСТКА СТОЛБЦОВ ПО КНОПКЕ В NAVIGATION
-// По кнопке очистка всего столбца MakeToDo
-$NAVIGATION_REMOVE_BTN.addEventListener('click', () => {
-  makeToDo.splice(0, makeToDo.length);
-
-  $TASKS_CARD_LIST.innerHTML = [];
-  $TASKS_CARD_COUNTER_OUT.innerHTML = 0;
-  saveMakeToDo(makeToDo);
-});
-// По кнопке очистка всего столбца InProgress
-$NAVIGATION_INPROGRESS_REMOVE_BTN.addEventListener('click', () => {
-  inProgress.splice(0, inProgress.length);
-
-  $INPROGRESS_CARD_LIST.innerHTML = [];
-  $INPROGRESS_CARD_COUNTER_OUT.innerHTML = 0;
-  saveInProgress(inProgress);
-});
-// По кнопке очистка всего столбца Done
-$NAVIGATION_DONE_REMOVE_BTN.addEventListener('click', () => {
-  done.splice(0, done.length);
-  $DONE_CARD_LIST.innerHTML = [];
-  $DONE_CARD_COUNTER_OUT.innerHTML = 0;
-  saveDone(done);
-});
-
-// 14-УДАЛЕНИЕ ЗАДАЧ ИЗ СПИСКА ПО КНОПКУ МУСОРКИ В КАРТОЧКЕ
-
-// +Удаление task из MakeToDo по кнопке мусорки в карточке
-$TASKS_CARD_LIST_REMOVE_BTN_ALL = document.querySelectorAll(
-  '.tasks-card-list-buttons-remove_btn'
-);
-
-$TASKS_CARD_LIST_REMOVE_BTN_ALL.forEach((item) => {
-  item.addEventListener('click', function () {
-    let id = item.getAttribute('id');
-    makeToDo.splice(findElementById(makeToDo, id), 1);
-    saveMakeToDo(makeToDo);
-    $TASKS_CARD_COUNTER_OUT.innerHTML = makeToDo.length;
-  });
-});
-$TASKS_CARD_LIST_REMOVE_BTN_ALL.forEach((item) => {
-  item.addEventListener('click', removeTask);
-});
-
-// +Удаление task из InProgress по кнопке мусорки в карточке
+// Удаление task из InProgress по кнопке мусорки в карточке
 $INPROGRESS_CARD_LIST_REMOVE_BTN_ALL = document.querySelectorAll(
   '.inprogress-card-list-buttons-remove_btn'
 );
 $INPROGRESS_CARD_LIST_REMOVE_BTN_ALL.forEach((item) => {
   item.addEventListener('click', function (index) {
-    let id = item.getAttribute('id');
-    inProgress.splice(findElementById(inProgress, id), 1);
+    inProgress.splice(index, 1);
     saveInProgress(inProgress);
     $INPROGRESS_CARD_COUNTER_OUT.innerHTML = inProgress.length;
   });
 });
 $INPROGRESS_CARD_LIST_REMOVE_BTN_ALL.forEach((item) => {
-  item.addEventListener('click', removeInProgress);
+  item.addEventListener('click', removeTask);
 });
 
-// +Удаление task из Done по кнопке мусорки в карточке
+// Удаление task из Done по кнопке мусорки в карточке
 $DONE_CARD_LIST_REMOVE_BTN_ALL = document.querySelectorAll(
   '.done-card-list-buttons-remove_btn'
 );
 $DONE_CARD_LIST_REMOVE_BTN_ALL.forEach((item) => {
   item.addEventListener('click', function (index) {
-    let id = item.getAttribute('id');
-    done.splice(findElementById(done, id), 1);
+    done.splice(index, 1);
+
     saveDone(done);
     $DONE_CARD_COUNTER_OUT.innerHTML = done.length;
   });
 });
 $DONE_CARD_LIST_REMOVE_BTN_ALL.forEach((item) => {
-  item.addEventListener('click', removeDone);
+  item.addEventListener('click', removeTask);
 });
 
-// 15-ПЕРЕНОС ТАСКОВ ИЗ ОДНОЙ КОЛОНКИ В ДРУГУЮ
-
-//+Перенос таска из MakeToDo в inProgress
+// ПЕРЕНОС ТАСКОВ ИЗ ОДНОЙ КОЛОНКИ В ДРУГУЮ
+//Перенос таска из MakeToDo в inProgress
 $TASKS_CARD_LIST_INPROGRESS_BTN_ALL = document.querySelectorAll(
   '.tasks-card-list-buttons-inprogress_btn'
 );
 
 $TASKS_CARD_LIST_INPROGRESS_BTN_ALL.forEach((item) => {
   item.addEventListener('click', function (index) {
-    let id = item.getAttribute('id');
-    inProgress = inProgress.concat(
-      makeToDo.splice(findElementById(makeToDo, id), 1)
-    );
-
+    inProgress = inProgress.concat(makeToDo.splice(index, 1));
+    console.log(inProgress);
     saveInProgress(inProgress);
     saveMakeToDo(makeToDo);
     $TASKS_CARD_COUNTER_OUT.innerHTML = makeToDo.length;
     $INPROGRESS_CARD_COUNTER_OUT.innerHTML = inProgress.length;
-    $INPROGRESS_CARD_LIST.innerHTML += createInProgress(
-      inProgress[findElementById(inProgress, id)]
-    );
-    window.location.reload();
   });
 });
 $TASKS_CARD_LIST_INPROGRESS_BTN_ALL.forEach((item) => {
   item.addEventListener('click', removeTask);
 });
 
-//+Перенос таска из inProgress в MakeToDo
+//Перенос таска из inProgress в MakeToDo
 $INPROGRESS_CARD_LIST_INMAKETODO_BTN_ALL = document.querySelectorAll(
   '.inprogress-card-list-buttons-inmake_btn'
 );
+
 $INPROGRESS_CARD_LIST_INMAKETODO_BTN_ALL.forEach((item) => {
   item.addEventListener('click', function (index) {
-    let id = item.getAttribute('id');
-    makeToDo = makeToDo.concat(
-      inProgress.splice(findElementById(inProgress, id), 1)
-    );
+    makeToDo = makeToDo.concat(inProgress.splice(index, 1));
 
     saveInProgress(inProgress);
     saveMakeToDo(makeToDo);
     $TASKS_CARD_COUNTER_OUT.innerHTML = makeToDo.length;
     $INPROGRESS_CARD_COUNTER_OUT.innerHTML = inProgress.length;
-    $TASKS_CARD_LIST.innerHTML += createMakeToDo(
-      makeToDo[findElementById(makeToDo, id)]
-    );
-    window.location.reload();
   });
 });
 $INPROGRESS_CARD_LIST_INMAKETODO_BTN_ALL.forEach((item) => {
-  item.addEventListener('click', removeInProgress);
+  item.addEventListener('click', removeTask);
 });
 
-//+Перенос таска из inProgress в Done
+//Перенос таска из inProgress в Done
 $INPROGRESS_CARD_LIST_INDONE_BTN_ALL = document.querySelectorAll(
   '.inprogress-card-list-buttons-indone_btn'
 );
 
 $INPROGRESS_CARD_LIST_INDONE_BTN_ALL.forEach((item) => {
   item.addEventListener('click', function (index) {
-    let id = item.getAttribute('id');
-    done = done.concat(inProgress.splice(findElementById(inProgress, id), 1));
+    done = done.concat(inProgress.splice(index, 1));
 
     saveInProgress(inProgress);
     saveDone(done);
     $DONE_CARD_COUNTER_OUT.innerHTML = done.length;
     $INPROGRESS_CARD_COUNTER_OUT.innerHTML = inProgress.length;
-    $DONE_CARD_LIST.innerHTML += createDone(done[findElementById(done, id)]);
-    window.location.reload();
   });
 });
 $INPROGRESS_CARD_LIST_INMAKETODO_BTN_ALL.forEach((item) => {
-  item.addEventListener('click', removeInProgress);
+  item.addEventListener('click', removeTask);
 });
 
-//+Перенос таска из Done в inProgress
+//Перенос таска из Done в inProgress
 $DONE_CARD_LIST_INPROGRESS_BTN_ALL = document.querySelectorAll(
   '.done-card-list-buttons-inprogress_btn'
 );
 
 $DONE_CARD_LIST_INPROGRESS_BTN_ALL.forEach((item) => {
   item.addEventListener('click', function (index) {
-    let id = item.getAttribute('id');
-    inProgress = inProgress.concat(done.splice(findElementById(done, id), 1));
+    inProgress = inProgress.concat(done.splice(index, 1));
 
     saveInProgress(inProgress);
     saveDone(done);
-    $DONE_CARD_COUNTER_OUT.innerHTML = makeToDo.length;
+    $DONE_CARD_COUNTER_OUT.innerHTML = done.length;
     $INPROGRESS_CARD_COUNTER_OUT.innerHTML = inProgress.length;
-    $INPROGRESS_CARD_LIST.innerHTML += createInProgress(
-      inProgress[findElementById(inProgress, id)]
-    );
-    window.location.reload();
   });
 });
 $DONE_CARD_LIST_INPROGRESS_BTN_ALL.forEach((item) => {
-  item.addEventListener('click', removeDone);
+  item.addEventListener('click', removeTask);
+});
+// }
+// localArr();
+
+////test
+
+$TASKS_CARD_LIST_REMOVE_BTN_ALL = document.querySelectorAll(
+  '.tasks-card-list-buttons-remove_btn'
+);
+
+$TASKS_CARD_LIST_REMOVE_BTN_ALL.forEach((item, index) => {
+  item.addEventListener('click', function () {
+    console.log(index);
+    console.log($TASKS_CARD_LIST_REMOVE_BTN_ALL);
+    makeToDo.splice(index, 1);
+    saveMakeToDo(makeToDo);
+    $TASKS_CARD_COUNTER_OUT.innerHTML = makeToDo.length;
+  });
+});
+$TASKS_CARD_LIST_REMOVE_BTN_ALL.forEach((item) => {
+  item.addEventListener('click', removeTask);
 });
 
-//  16-Нажатие кнопки создания таска
+// КНОПКИ
+
+//  1-Нажатие кнопки создания таска
 $CREATER_PANEL_CREATE_BTN.addEventListener('click', (e) => {
   // отключение перезагрузки страницы по клику
   e.preventDefault();
@@ -440,6 +425,7 @@ $CREATER_PANEL_CREATE_BTN.addEventListener('click', (e) => {
     $CREATER_PANEL_DESCRIPTION.value,
     $CREATER_PANEL_AUTHOR.value
   );
+  console.log(task);
   $TASKS_CARD_LIST.innerHTML += createMakeToDo(task);
   // добавление объекта в массив
   makeToDo.push(task);
