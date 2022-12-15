@@ -1,6 +1,7 @@
 .header {
   padding: 2.25em 0;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgb(188, 188, 188, 0.45);
+  box-shadow: 10px 5px 5px rgb(188, 188, 188, 0.45);
 
   .header-logo {
     color: coral;
@@ -16,10 +17,10 @@
   .header-title {
     font-size: 36px;
     text-transform: capitalize;
-    color: cornflowerblue;
+    color: rgb(32, 161, 241);
   }
   .current_data {
     font-size: 24px;
-    color: gray;
+    color: rgb(128, 128, 128, 0.8);
   }
 }

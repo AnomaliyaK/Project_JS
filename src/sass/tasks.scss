@@ -12,11 +12,12 @@
     width: 30%;
 
     &-counter {
-      border: 1px solid gray;
+      border: 1px solid fff(188, 188, 188);
       border-radius: 10px;
       padding: 0.625em 0.9375em;
       margin-bottom: 20px;
       text-transform: capitalize;
+      box-shadow: 10px 5px 5px rgb(188, 188, 188, 0.45);
 
       span {
         text-transform: capitalize;
@@ -27,12 +28,12 @@
       }
     }
     &-list {
-      border: 1px solid gray;
+      border: 1px solid rgb(188, 188, 188, 0.2);
       border-radius: 10px;
       padding: 1.25em 0.9375em;
-
+      box-shadow: 10px 5px 5px rgb(188, 188, 188, 0.45);
       &-item {
-        border: 1px solid gray;
+        border: 1px solid rgb(188, 188, 188);
         border-radius: 10px;
         padding: 1.25em 0.9375em;
         background-color: #fff5ee;
@@ -85,7 +86,7 @@
         &-indone_btn {
           border: 0;
           background-color: #fff5ee;
-          color: coral;
+          color: rgb(32, 161, 241);
           margin-left: 20px;
           cursor: pointer;
         }
@@ -93,7 +94,7 @@
           margin-left: 20px;
           border: 0;
           background-color: #fff5ee;
-          color: gray;
+          color: coral;
           cursor: pointer;
         }
       }
